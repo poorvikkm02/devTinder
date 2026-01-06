@@ -1,0 +1,21 @@
+{
+  "name": "devtinder_backend",
+  "version": "1.0.0",
+  "description": "Tinder for developers",
+  "keywords": [
+    "node.js",
+    "express.js",
+    "mongodb"
+  ],
+  "license": "ISC",
+  "author": "Poorvik K M",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start":"node src/app.js",
+    "dev":"nodemon ./src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
