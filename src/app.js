@@ -1,33 +1,31 @@
-const express=require("express");
-const app=express();
+const express = require("express");
+const app = express();
 
-app.use("/User", (req,res)=>{
-res.end("User ur Welcome");
-  
-})
+app.get("/user", (req, res) => {
+  res.send({ firstName: "kiccha", lastName: "Sudeep" });
+});
 
-app.use("/Arun", (req,res)=>{
-res.end("Hi Arun are u from Basapura Konanduru");
-  
-})
+app.post("/user", (req, res) => {
+  console.log("Save Data to the Database");
+  res.send("Data Successfully Saved to Database");
+});
 
-app.use( (req,res)=>{
-res.end("Express Server is Created");
-  
-})
-try{app.listen(3000,()=>{
-    console.log("SERVER IS RUNNING");
-}
-);
-}
-catch(err){
-    console.log("error");
-}
+app.delete("/user", (req, res) => {
+  res.send("Data Successfully Deleted from Database");
+});
+
+app.use("/Arun", (req, res) => {
+  res.send("Hi Arun are u from Basapura Konanduru");
+});
+
+app.listen(3000, () => {
+  console.log("SERVER IS RUNNING");
+});
 
 // we hv used require to fetch express module fromm node_modules.
 //the express is a variable which hold fn now hence its called in 2nd line
 //now app has returned value from express which contains lot of inbuilt methods and use is one of those inbuilt method.
-//try and catch is not used here as it doesnot catch error bec tryand catch can nly catch synchronous errors or await promises 
+//try and catch is not used here as it doesnot catch error bec tryand catch can nly catch synchronous errors or await promises
 // .here is error is thrown as events hence try and catch doesnt come into picture.
 //we also cant do req.end as it is client side inbuilt method to get to know the server is called
 //listen is inbuilt fn which takes port no and callback as paramters.
