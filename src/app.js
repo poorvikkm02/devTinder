@@ -1,27 +1,20 @@
 const express = require("express");
+const connectDb = require("./config/database");
+
 const app = express();
 
-app.get("/user/:userId/:name/:password", (req, res) => {
-    console.log(req.params);                                      //http://localhost:3000/user/707/Poorvik/mypassword
-  res.send({ firstName: "kiccha", lastName: "Sudeep" });
-});
 
-app.post("/user", (req, res) => {
-  console.log("Save Data to the Database");
-  res.send("Data Successfully Saved to Database");
-});
 
-app.delete("/user", (req, res) => {
-  res.send("Data Successfully Deleted from Database");
-});
-
-app.use("/Arun", (req, res) => {
-  res.send("Hi Arun are u from Basapura Konanduru");
-});
-
-app.listen(3000, () => {
-  console.log("SERVER IS RUNNING");
-});
+connectDb()
+  .then(() => {
+    console.log("Database connection established...");
+    app.listen(3000, () => {
+      console.log("SERVER IS RUNNING");
+    });
+  })
+  .catch((err) => {
+    console.log("Database cannot be connected", err);
+  });
 
 // we hv used require to fetch express module fromm node_modules.
 //the express is a variable which hold fn now hence its called in 2nd line
