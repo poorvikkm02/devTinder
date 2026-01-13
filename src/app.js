@@ -16,6 +16,20 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+app.get("/fetch", async (req, res) => {
+  const email = req.body.emailId;
+  if (email.length !== 0) {
+    const fetchUser = await User.findOne({ emailId: email });
+    return res.status(200).json(fetchUser);
+  }else{
+    res.status(400).send("User not found");
+  }
+});
+
+//app.get("/feed",async (req,res)=>{
+// const feed
+//})
+
 connectDb()
   .then(() => {
     console.log("Database connection established...");
